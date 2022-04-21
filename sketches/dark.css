@@ -1,0 +1,69 @@
+body{
+  background: #1D1B26;
+}
+a.button8 {
+  color: #dbd8e6;
+} 
+a.button8:hover { background: rgba(255,255,255,.2); }
+a.button8:active { background: green; }
+.text{
+  color: #b7b7b9;
+  background-color: #45394d;
+}
+.weather{
+  color:#b7b7b9;
+}
+.time{
+  color: #b7b7b9;
+}
+.tehy{
+  color: #b7b7b9;
+}
+.door_open{
+  background-color: green;
+  color: #b7b7b9;
+}
+.door_close{
+  color: #b7b7b9;
+  background-color: #aa0202;
+}
+#door_btn {
+  text-shadow: 0 1px rgba(255,255,255,.2), 0 -1px rgba(0,0,0,.8);
+  background: rgb(2, 39, 43) radial-gradient(150% 100% at 50% 5px, rgba(255,255,255,.2), rgba(0,0,0,0));
+  box-shadow: inset rgba(0,0,0,.6) 0 -2px 5px, inset rgba(252,255,255,.7) 0 2px 5px, rgba(0,0,0,.8) 0 2px 5px -1px;
+  color: rgb(4, 45, 63);
+} 
+#door_btn:hover {
+  color: rgb(3, 194, 28);
+}
+#door_btn:active {
+  box-shadow:
+   inset rgba(0,0,0,1) 0 1px 3px,
+   inset rgba(0,0,0,.6) 0 -2px 5px,
+   inset rgba(252,255,255,.7) 0 2px 5px,
+   0 1px rgba(255,255,255,.08);
+  color: rgb(128,207,214);
+}
+.nav {
+  background-color: #1D1B26;
+}
+.nav-toggle {
+  /* цвет текста */
+  color: #b7b7b9;
+}
+/* цвет текста при наведении */
+.nav-toggle:hover {
+  color: #b7b7b9;
+}
+.nav h2 a{
+  color: #b7b7b9;
+}
+.nav > ul > li > a {
+  color: #b7b7b9;
+}
+.nav > ul > li > a:after {
+  background: #3bc1a0;
+}
+.nav > ul > li > a:hover:before {
+  background: #3bc1a0;
+}

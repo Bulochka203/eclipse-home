@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width">
+      <meta name="">
+      <meta name="description" content="Eclipse Home Web">
+      <title> Eclipse </title>
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+      <link rel="manifest" href="/site.webmanifest">
+      <link rel="stylesheet" type="text/css" href="style.css" media="">
+      <link rel="stylesheet" type="text/css" href="dark.css" id="theme-link">
+    </head>
+    <body>
+      <input type="checkbox" id="nav-toggle" hidden>
+      <nav class="nav">
+        <label for="nav-toggle" class="nav-toggle" onclick></label>
+        <div class="logo" href="#"> 
+          <img id="logo" src="" alt="">
+        </div>
+        <ul>
+          <li><a href="#">Регуляторы</a>
+          <li><a href="#">soon</a>
+          <li><a href="#">soon</a>
+          <li><a href="#">soon</a>
+          <li><a href="#">soon</a>
+          <li><a href="#">Настройки</a>
+          <li><a href="#">О проекте</a> 
+       </ul>
+        </nav>
+        <div class="theme-button" id="theme-button"></div>
+    <div class="flex-over">
+        <div> <h1 class="text">Погода</h1></div>
+        <div ><h1 class="text">Время</h1></div></div>
+    <div class="flex-over">
+    <div>
+      <!-- weather widget start -->
+      <a target="_blank" href="https://www.booked.net/weather/petrozavodsk-17814">
+        <img src="https://w.bookcdn.com/weather/picture/30_17814_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=w209&anc_id=2029"  alt="booked.net"/></a>
+      <!-- weather widget end -->
+    </div>
+    <div><h1 class="time" id="current_date_time_block"></h1>
+      <script type="text/javascript">
+    
+        /* функция добавления ведущих нулей */
+        /* (если число меньше десяти, перед числом добавляем ноль) */
+        function zero_first_format(value)
+        {
+            if (value < 10)
+            {
+                value='0'+value;
+            }
+            return value;
+        }
+    
+        /* функция получения текущей даты и времени */
+        function date_time()
+        {
+            var current_datetime = new Date();
+            var hours = zero_first_format(current_datetime.getHours());
+            var minutes = zero_first_format(current_datetime.getMinutes());
+            var seconds = zero_first_format(current_datetime.getSeconds());
+            return  hours+":"+minutes+":"+seconds ;
+        }
+    
+        /* выводим текущую дату и время на сайт в блок с id "current_date_time_block" */
+        setInterval(function () {
+            document.getElementById('current_date_time_block').innerHTML = date_time();
+        }, 1000);
+      </script></div>
+  </div>
+    <div class="flex-over"><h1 class="text">Свет в доме</h1> <h1 class="text">Отопление</h1></div>
+    <div class="flex-over">
+    <input class="" type="button" id="light_btn">
+      <script> //скрипт для кнопки света
+      var light_status = 0;  
+      var light = document.getElementById("light_btn");
+      function lighter(){
+        var request = new XMLHttpRequest();
+        request.open('GET','/light',false);
+        request.send();
+        if (request.readyState == 4 && request.status == 200){
+            var response = request.responseText;
+            light_status = Number.parseInt(response);
+            if(light_status == 0) {
+              light.classList.remove('light_on');
+              light.classList.add('light_off');
+              light_status = 0;
+            }else{
+              light.classList.remove('light_off');
+              light.classList.add('light_on');
+              light_status = 1;
+            }
+      }
+    }
+      function light_state(){ //функция получения состояния света в данный момент
+        var request = new XMLHttpRequest();
+        request.open('GET', '/light_status',true);
+        request.onload = function(){
+          if (request.readyState == 4 && request.status == 200){
+            var response = request.responseText;
+            light_status = Number.parseInt(response);
+            if(light_status == 0)
+              light.classList.add('light_off');
+            else
+              light.classList.add('light_on');
+          }
+        }
+        request.send();
+      }
+      document.addEventListener('DOMContentLoaded', light_state);
+      light.addEventListener('click', lighter);
+      </script>
+      <input class="" type="button" id="heat_btn">
+      <script>
+      var heat_status = 0;  
+      var heat = document.getElementById("heat_btn");
+      function heating(){
+        var request = new XMLHttpRequest();
+        request.open('GET','/heating',false);
+        request.send();
+        if (request.readyState == 4 && request.status == 200){
+          var response = request.responseText;
+          heat_status = Number.parseInt(response);
+          if(heat_status == 0) {
+            heat.classList.remove('light_on');
+            heat.classList.add('light_off');
+            heat_status = 0;
+          }else{
+            heat.classList.remove('light_off');
+            heat.classList.add('light_on');
+            heat_status = 1;
+          }
+        }
+      }
+      function heat_state(){
+        var request = new XMLHttpRequest();
+        request.open('GET', '/heating_status',true);
+        request.onload = function(){
+          if (request.readyState == 4 && request.status == 200){
+            var response = request.responseText;
+            heat_status = Number.parseInt(response);
+            if(heat_status == 0)
+              heat.classList.add('light_off');
+            else
+              heat.classList.add('light_on');
+          }
+        }
+        request.send();
+      }
+      document.addEventListener('DOMContentLoaded', heat_state);
+      heat.addEventListener('click', heating);
+      </script>
+    </div>
+    <div class="flex-over">
+      <div class="start"><h1 class="text">Температура</h1></div>
+      <div class="end"><h1 class="text">Влажность</h1></div>
+    </div>
+    <div class="flex-over">
+        <h1 class="tehy" id="temp"></h1>
+      <script>
+        var temp = document.getElementById("temp")
+        var t = 0;
+        function req_temp(){
+          var request = new XMLHttpRequest();
+          request.open('GET','/temp',true);
+          request.onload = function(){
+            if(request.readyState == 4 && request.status == 200)
+              t = Number.parseInt(request.responseText);
+          }
+          request.send();
+          return reloadDisplayT(t);
+        }
+        function reloadDisplayT(t){
+          var temperature = t;
+          return temperature + "°С";
+        }
+        document.addEventListener('DOMContentLoaded', function(){temp.innerHTML = req_temp()});
+        setInterval(function(){
+          temp.innerHTML = req_temp();}, 10000);
+      </script>
+        <h1 class="tehy" id="humi"></h1>
+        <script>
+          var humi = document.getElementById("humi");
+          var h = 0;
+          function req_humi(){
+          var request = new XMLHttpRequest();
+          request.open('GET', '/humi', true);
+          request.onload = function(){
+            if(request.readyState == 4 && request.status == 200){
+              h = Number.parseInt(request.responseText);
+            }
+          }
+          request.send();
+          return reloadDisplayH(h);
+        }
+        function reloadDisplayH(h){
+          var humidity = h;
+          return humidity + "%";
+        }
+        document.addEventListener('DOMContentLoaded', function(){humi.innerHTML = req_humi()});
+        setInterval(function(){humi.innerHTML = req_humi();}, 10000);
+        </script>
+      </div>
+    </div>
+    <div class="center">
+      <h1 class="" id="door_en"></h1>
+      <script>
+        var door_stater = 0;
+        var door_state = document.getElementById("door_en");
+        function door_status(){
+          var request = new XMLHttpRequest();
+          request.open('GET', '/door_status', true);
+          request.onload = function(){
+            if (request.readyState == 4 && request.status == 200){
+              var response = request.responseText;
+              door_stater = Number.parseInt(response);
+              if (door_stater == 1){
+                door_state.innerHTML = "open";
+                door_state.classList.add("door_open");
+                door_stater = 1;
+              }else{
+                door_state.innerHTML = "closed"
+                door_state.classList.add("door_close");
+                door_stater = 0;}
+            }
+          }
+          request.send();
+        }
+        document.addEventListener('DOMContentLoaded', door_status);
+        
+      </script>
+    </div>
+    <div class="center"><input type="button" id="door_btn" value='Открыть дверь'></div>
+    <script>
+      var door = document.getElementById("door_btn");
+      var door_state = document.getElementById('door_en');
+      function door_open(){
+        var request = new XMLHttpRequest();
+        request.open('GET', '/door_open', false);
+        request.send();
+        if(request.readyState == 4 && request.status == 200){
+          door_state.classList.remove('door_close');
+          door_state.classList.add('door_open');
+          door_state.innerHTML = "open";
+          }
+        }
+      door.addEventListener('click', door_open);
+    </script>
+
+<script type="text/javascript">
+  var btn = document.getElementById("theme-button");
+  var flair = document.getElementById("style");
+  var link = document.getElementById("theme-link");
+  var logo = document.getElementById("logo");
+  btn.addEventListener("click", function () { ChangeTheme(); });
+  document.addEventListener('DOMContentLoaded', themes);
+  let PC_flair = "style.css";
+  let lightTheme = "light.css";
+  let darkTheme = "dark.css";
+  var currTheme = link.getAttribute("href");
+  function some(){
+    var current_datetime = new Date();
+    if (current_datetime.getHours() > 18){
+      return true;
+    }
+    if (current_datetime.getHours() < 8){
+      return true;
+    }
+    return false;
+  }
+  function themes(){
+    if (some() == true){
+    currTheme = darkTheme;
+    logo.src = 'logonight.png';
+  }
+  else{
+    currTheme = darkTheme;
+    logo.src='logoday.png';
+  }}
+  function ChangeTheme()
+  {
+  if(currTheme == lightTheme){
+    currTheme = darkTheme;
+    logo.src = "logonight.png";
+  }else{    
+    currTheme = lightTheme;
+    logo.src="logoday.png";}
+  link.setAttribute("href", currTheme);
+
+}
+</script>
+    </body> 
+</html>
+

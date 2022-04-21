@@ -1,0 +1,73 @@
+body{
+  background: #c1bec9;
+}
+a.button8 {
+  color: #c1bec9;
+} 
+a.button8:hover { background: rgba(255,255,255,.2); }
+a.button8:active { background: green; }
+.text{
+  color: #101011;
+  background-color: #7b7985;
+}
+.weather{
+  color:#101011;
+}
+.time{
+  color: #101011;
+}
+.tehy{
+  color: #101011;
+}
+.door_open{
+  background-color: green;
+  color: #101011;
+}
+.door_close{
+  color: #101011;
+  background-color: #aa0202;
+}
+#door_btn {
+  text-shadow: 0 1px rgba(255,255,255,.2), 0 -1px rgba(0,0,0,.8);
+  background: rgb(28, 2, 43) radial-gradient(150% 100% at 50% 5px, rgba(255,255,255,.2), rgba(0,0,0,0));
+  box-shadow: inset rgba(0,0,0,.6) 0 -2px 5px, inset rgba(252,255,255,.7) 0 2px 5px, rgba(0,0,0,.8) 0 2px 5px -1px;
+  color: rgb(143, 27, 143);
+} 
+#door_btn:hover {
+  color: rgb(3, 194, 28);
+}
+#door_btn:active {
+  box-shadow:
+   inset rgba(0,0,0,1) 0 1px 3px,
+   inset rgba(0,0,0,.6) 0 -2px 5px,
+   inset rgba(252,255,255,.7) 0 2px 5px,
+   0 1px rgba(255,255,255,.08);
+  color: rgb(128,207,214);
+}
+.nav {
+  background-color: #c1bec9;
+}
+.nav-toggle {
+  /* цвет текста */
+  color: #101011;
+}
+.nav > ul > li > a:hover,
+.nav > ul > li > a:focus {
+  color: rgb(26, 15, 126);
+}
+/* цвет текста при наведении */
+.nav-toggle:hover {
+  color: #101011;
+}
+.nav h2 a{
+  color: #101011;
+}
+.nav > ul > li > a {
+  color: #101011;
+}
+.nav > ul > li > a:after {
+  background: #b82f17;
+}
+.nav > ul > li > a:hover:before {
+  background: #b82f17;
+}
